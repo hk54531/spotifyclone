@@ -5,6 +5,7 @@ import {
   responsiveHeight,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
+import {userPlayerContext} from './Providers/PlayerProviderTrack';
 
 type TrackListItemProps = {
   track: Track;
@@ -12,8 +13,10 @@ type TrackListItemProps = {
 
 export default function TrackItemList({track}: TrackListItemProps) {
   const image = track.album?.images?.[0];
+  const {setCurrentTrack} = userPlayerContext();
   return (
     <TouchableOpacity
+      onPress={() => setCurrentTrack(track)}
       style={{
         marginVertical: 4,
         marginLeft: responsiveWidth(2),

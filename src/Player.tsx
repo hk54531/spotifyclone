@@ -1,14 +1,17 @@
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {tracks} from './assets/data/tracks';
-const track = tracks[0];
+import {userPlayerContext} from './Providers/PlayerProviderTrack';
+// import {tracks} from './assets/data/tracks';
+// const track = tracks[0];
 
 const Player = () => {
-  if (!track) {
+  const {currentTrack} = userPlayerContext();
+  if (!currentTrack) {
     return null;
   }
 
-  const image = track.album.images?.[0];
+  const image = currentTrack.album.images?.[0];
+  const track = currentTrack;
 
   return (
     <View style={styles.container}>
