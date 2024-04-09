@@ -4,7 +4,7 @@ import {userPlayerContext} from './Providers/PlayerProviderTrack';
 // import {tracks} from './assets/data/tracks';
 // const track = tracks[0];
 
-const Player = () => {
+const Player = (props: any, {index}: any) => {
   const {currentTrack} = userPlayerContext();
   if (!currentTrack) {
     return null;
@@ -15,7 +15,13 @@ const Player = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.player}>
+      <TouchableOpacity
+        style={styles.player}
+        onPress={() =>
+          props.navigation.replace('MusicPlayerScreen', {
+            data: currentTrack,
+          })
+        }>
         {image && <Image source={{uri: image.url}} style={styles.image} />}
 
         <View style={{flex: 1}}>
@@ -39,7 +45,7 @@ const Player = () => {
             color={track?.preview_url ? 'white' : 'gray'}
           />
         </TouchableOpacity>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };

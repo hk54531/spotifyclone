@@ -15,35 +15,37 @@ export default function TrackItemList({track}: TrackListItemProps) {
   const image = track.album?.images?.[0];
   const {setCurrentTrack} = userPlayerContext();
   return (
-    <TouchableOpacity
-      onPress={() => setCurrentTrack(track)}
-      style={{
-        marginVertical: 4,
-        marginLeft: responsiveWidth(2),
-        flexDirection: 'row',
-        alignItems: 'center',
-        maxWidth: responsiveWidth(90),
-        paddingVertical: responsiveHeight(1),
-      }}>
-      {image && (
-        <Image
-          source={{uri: image.url}}
-          style={{height: 60, width: 60, borderRadius: 10}}
-          resizeMode="contain"
-        />
-      )}
-      <View style={{marginLeft: responsiveWidth(4)}}>
-        <Text
-          style={{
-            marginBottom: 5,
-            fontWeight: '600',
-            maxWidth: responsiveWidth(70),
-          }}>
-          {track.name}
-        </Text>
-        <Text>{track.artists[0]?.name}</Text>
-      </View>
-    </TouchableOpacity>
+    track.preview_url && (
+      <TouchableOpacity
+        onPress={() => setCurrentTrack(track)}
+        style={{
+          marginVertical: 4,
+          marginLeft: responsiveWidth(2),
+          flexDirection: 'row',
+          alignItems: 'center',
+          maxWidth: responsiveWidth(90),
+          paddingVertical: responsiveHeight(1),
+        }}>
+        {image && (
+          <Image
+            source={{uri: image.url}}
+            style={{height: 60, width: 60, borderRadius: 10}}
+            resizeMode="contain"
+          />
+        )}
+        <View style={{marginLeft: responsiveWidth(4)}}>
+          <Text
+            style={{
+              marginBottom: 5,
+              fontWeight: '600',
+              maxWidth: responsiveWidth(70),
+            }}>
+            {track.name}
+          </Text>
+          <Text>{track.artists[0]?.name}</Text>
+        </View>
+      </TouchableOpacity>
+    )
   );
 }
 

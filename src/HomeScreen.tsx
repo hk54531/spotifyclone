@@ -12,7 +12,7 @@ import TrackItemList from './TrackItemList';
 import {responsiveHeight} from 'react-native-responsive-dimensions';
 import Player from './Player';
 
-export default function HomeScreen() {
+export default function HomeScreen(props: any) {
   return (
     <SafeAreaView style={{flex: 1}}>
       <StatusBar />
